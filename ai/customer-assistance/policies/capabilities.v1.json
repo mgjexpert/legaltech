@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "status": "DESIGN_ONLY",
+  "runtimeEnabled": false,
+  "defaultDecision": "BLOCK",
+  "caseDataAccess": false,
+  "persistentCaseMemory": false,
+  "autonomousOutboundMessaging": false,
+  "autonomousSkillPromotion": false,
+  "intents": [
+    "PUBLIC_LEAD",
+    "CUSTOMER_SUPPORT",
+    "PARTNER_B2B",
+    "SAFETY_HANDOFF"
+  ],
+  "proposedTools": [
+    {
+      "name": "public_faq_lookup",
+      "scope": "PUBLIC_APPROVED_KB",
+      "enabled": false,
+      "confirmation": "NONE_READ_ONLY"
+    },
+    {
+      "name": "create_contact_interest",
+      "scope": "LEADS_CONTACT_ONLY",
+      "enabled": false,
+      "confirmation": "EXPLICIT_PURPOSE_CONTACT_OPT_IN"
+    },
+    {
+      "name": "create_support_ticket",
+      "scope": "AUTHENTICATED_ACCOUNT_SUPPORT",
+      "enabled": false,
+      "confirmation": "EXPLICIT_TICKET_SUMMARY_CONFIRMATION"
+    },
+    {
+      "name": "propose_partner_meeting",
+      "scope": "PARTNER_CONTACT_ONLY",
+      "enabled": false,
+      "confirmation": "EXPLICIT_REQUEST_NO_AUTONOMOUS_SENDING"
+    }
+  ],
+  "forbiddenCapabilities": [
+    "read_case_documents",
+    "read_private_party_workspace",
+    "retrieve_safety_disclosures",
+    "send_counterparty_message",
+    "accept_proposal",
+    "give_individual_legal_advice",
+    "publish_advertisement",
+    "spend_ad_budget",
+    "create_social_profile",
+    "read_secrets",
+    "shell_execution_on_core",
+    "self_modify_approved_prompts"
+  ],
+  "requiredExternalEnforcement": [
+    "server-authenticated actor and purpose",
+    "schema-validated request",
+    "purpose-specific consent",
+    "least-privilege tool token",
+    "rate limiting",
+    "metadata-only audit",
+    "retention and subject rights",
+    "independent prompt/KB/version approval"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "deploymentStatus": "DESIGN_ONLY",
+  "approvedForProduction": false,
+  "product": "Family Resolution OS",
+  "market": "BR",
+  "stage": "ENGINEERING_FOUNDATION_SYNTHETIC",
+  "services": [
+    {
+      "id": "public-product-information",
+      "availability": "DRAFT",
+      "description": "Explicação da proposta e dos limites do projeto em desenvolvimento."
+    },
+    {
+      "id": "synthetic-dashboard",
+      "availability": "LOCAL_DEMO",
+      "description": "Demonstração sintética de intake, documentos, finanças, preparação e export JSON."
+    },
+    {
+      "id": "real-case-preparation",
+      "availability": "NOT_AVAILABLE",
+      "description": "Auth e persistência integradas ainda em implementação."
+    },
+    {
+      "id": "professional-portal",
+      "availability": "PLANNED",
+      "description": "Handoff e revisão profissional após consentimento/grants/MFA."
+    },
+    {
+      "id": "communication-bridge",
+      "availability": "PLANNED_GATED",
+      "description": "Pilot 2; sem canal bilateral nesta base."
+    },
+    {
+      "id": "structured-negotiation",
+      "availability": "PLANNED_GATED",
+      "description": "Pilot 3; sem aceitação automática ou acordo jurídico pela IA."
+    },
+    {
+      "id": "individual-legal-advice",
+      "availability": "NOT_OFFERED_BY_THIS_ASSISTANT",
+      "description": "Requer profissional autorizado em fluxo específico; bot de leads/suporte não presta esse serviço."
+    }
+  ],
+  "pricing": {
+    "status": "UNDECIDED",
+    "approvedPrices": []
+  },
+  "contacts": {
+    "publicEmail": null,
+    "publicPhone": null,
+    "bookingUrl": null
+  },
+  "review": {
+    "owner": null,
+    "reviewedAt": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "campaignId": "CAM-BR-EXAMPLE-001",
+  "status": "DRAFT",
+  "segment": "TO_BE_DECIDED",
+  "objective": "DISCOVERY",
+  "owner": null,
+  "channels": [],
+  "destinationUrl": null,
+  "budget": {
+    "currency": "BRL",
+    "maximumCents": null
+  },
+  "schedule": {
+    "start": null,
+    "end": null,
+    "timeZone": "America/Sao_Paulo"
+  },
+  "approvals": {
+    "product": null,
+    "legal": null,
+    "privacy": null,
+    "publishing": null
+  },
+  "tracking": {
+    "utmSource": null,
+    "utmMedium": null,
+    "utmCampaign": "CAM-BR-EXAMPLE-001",
+    "containsPersonalData": false
+  },
+  "publishAuthorized": false
+}

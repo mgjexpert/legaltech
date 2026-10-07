@@ -54,6 +54,17 @@ Imagem Postgres/pgvector fixada por digest; lockfile e npm ci preservam resoluç
 - [Operação](docs/RUNBOOK.md), [incidentes](docs/INCIDENT-RESPONSE.md)
 - [Evidências e limitações da entrega](docs/VALIDATION.md)
 
+## Operação, equipe e aquisição
+
+- [Stack tecnológica e próximos passos](docs/STACK-AND-NEXT-STEPS.md)
+- [Instruções da equipe dev](team/dev/README.md)
+- [Campanhas e perfis de redes sociais](marketing/README.md)
+- [Pacote para IA de assistência a clientes/leads/parceiros](ai/customer-assistance/README.md)
+- [Avaliação de Hermes Agent](ai/customer-assistance/integrations/HERMES-ASSESSMENT.md)
+
+Essas pastas guardam especificações e materiais em rascunho. Não guardam contatos pessoais, credenciais,
+conversas ou dados de casos. Campanhas/perfis não foram publicados e assistência/Hermes não estão ativos.
+
 apps/web: Next.js App Router/PWA futura. apps/worker: handler puro de preparação, sem fila persistente.
 packages/domain: schemas, estados, dinheiro em centavos e preparação. packages/policy-engine: contratos de permissão.
 packages/db: migrations RLS, auditoria/outbox/idempotência. packages/audit: verificador de hash chain.
