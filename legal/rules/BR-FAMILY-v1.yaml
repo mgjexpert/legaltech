@@ -1,0 +1,26 @@
+# PROPOSED LEGAL RULES ONLY — not imported by the runtime Policy Engine.
+schema_version: 1
+jurisdiction: BR
+status: DRAFT
+active: false
+rules:
+  - id: BR-FAM-DIV-EXTRA-001
+    version: 1
+    status: DRAFT
+    active: false
+    source_ids: [S11, S12]
+    proposed_condition: "minor_children is true and custody_support_resolved_judicially is not confirmed true"
+    proposed_result: "Do not label extrajudicial route ready; request professional review."
+    reviewed_by: null
+    reviewed_at: null
+    next_review_at: null
+  - id: BR-FAM-CONTACT-001
+    version: 1
+    status: DRAFT
+    active: false
+    source_ids: [S15]
+    proposed_condition: "contact_prohibition reported or review required"
+    proposed_result: "Block bilateral channel pending authorized safety workflow; never bypass contact restrictions."
+    reviewed_by: null
+    reviewed_at: null
+    next_review_at: null

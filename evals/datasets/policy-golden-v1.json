@@ -1,0 +1,507 @@
+{
+  "version": 1,
+  "synthetic": true,
+  "scope": "Deterministic policy contracts only; not LLM/juridical evals.",
+  "cases": [
+    {
+      "id": "P01",
+      "name": "Classificar documento próprio",
+      "action": "classify_document",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": false,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "AUTO",
+        "canExecute": true
+      }
+    },
+    {
+      "id": "P02",
+      "name": "Somar despesas",
+      "action": "calculate_finances",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": false,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "AUTO",
+        "canExecute": true
+      }
+    },
+    {
+      "id": "P03",
+      "name": "Ação não declarada",
+      "action": "delete_case",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": false,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "BLOCK",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P04",
+      "name": "Documento sem acesso",
+      "action": "classify_document",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": false,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": false,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "BLOCK",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P05",
+      "name": "Revelar notas privadas",
+      "action": "disclose_private_to_counterparty",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": false,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "BLOCK",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P06",
+      "name": "Agente revelar notas",
+      "action": "disclose_private_to_counterparty",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "AGENT",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": false,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "BLOCK",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P07",
+      "name": "Enviar em fase individual",
+      "action": "send_message",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": true,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "BLOCK",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P08",
+      "name": "Reformular com bilateral desligado",
+      "action": "propose_rewrite",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": false,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "BLOCK",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P09",
+      "name": "Aceitação autônoma",
+      "action": "accept_proposal",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "AGENT",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": false,
+        "bilateralEnabled": true,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "BLOCK",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P10",
+      "name": "Negociação ainda fora da base",
+      "action": "accept_proposal",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": true,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "BLOCK",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P11",
+      "name": "Ordem de não contato bloqueia canal",
+      "action": "send_message",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "BLOCKED",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": true,
+        "bilateralEnabled": true,
+        "bothPartiesConsented": true
+      },
+      "expected": {
+        "permission": "BLOCK",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P12",
+      "name": "Segurança desconhecida bloqueia canal",
+      "action": "send_message",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "UNKNOWN",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": true,
+        "bilateralEnabled": true,
+        "bothPartiesConsented": true
+      },
+      "expected": {
+        "permission": "BLOCK",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P13",
+      "name": "Risco pendente exige revisão",
+      "action": "send_message",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "REVIEW",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": true,
+        "bilateralEnabled": true,
+        "bothPartiesConsented": true
+      },
+      "expected": {
+        "permission": "BLOCK",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P14",
+      "name": "Sem consentimento de ambas partes",
+      "action": "send_message",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": true,
+        "bilateralEnabled": true,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "BLOCK",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P15",
+      "name": "Agente não envia mesmo com aprovação",
+      "action": "send_message",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "AGENT",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": true,
+        "bilateralEnabled": true,
+        "bothPartiesConsented": true
+      },
+      "expected": {
+        "permission": "BLOCK",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P16",
+      "name": "Envio humano exige confirmação",
+      "action": "send_message",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": false,
+        "bilateralEnabled": true,
+        "bothPartiesConsented": true
+      },
+      "expected": {
+        "permission": "APPROVAL",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P17",
+      "name": "Contrato futuro de envio confirmado",
+      "action": "send_message",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": true,
+        "bilateralEnabled": true,
+        "bothPartiesConsented": true
+      },
+      "expected": {
+        "permission": "APPROVAL",
+        "canExecute": true
+      }
+    },
+    {
+      "id": "P18",
+      "name": "Sugestão privada não é ação material",
+      "action": "propose_rewrite",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": false,
+        "bilateralEnabled": true,
+        "bothPartiesConsented": true
+      },
+      "expected": {
+        "permission": "PROPOSE",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P19",
+      "name": "Compartilhar sem confirmar",
+      "action": "share_document",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": false,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "APPROVAL",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P20",
+      "name": "Compartilhar por humano confirmado",
+      "action": "share_document",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": true,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "APPROVAL",
+        "canExecute": true
+      }
+    },
+    {
+      "id": "P21",
+      "name": "Agente não compartilha",
+      "action": "share_document",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "AGENT",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": true,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "APPROVAL",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P22",
+      "name": "Informacional não dá consultoria individual",
+      "action": "individual_legal_advice",
+      "context": {
+        "mode": "SELF_SERVICE_INFORMATIONAL",
+        "safety": "NORMAL",
+        "actor": "PROFESSIONAL",
+        "workspaceAccess": true,
+        "professionalGrantActive": true,
+        "mfaVerified": true,
+        "explicitApproval": true,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "PROFESSIONAL",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P23",
+      "name": "Flag supervised não concede autoridade",
+      "action": "final_legal_document",
+      "context": {
+        "mode": "PROFESSIONAL_SUPERVISED",
+        "safety": "NORMAL",
+        "actor": "HUMAN",
+        "workspaceAccess": true,
+        "professionalGrantActive": false,
+        "mfaVerified": false,
+        "explicitApproval": false,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "PROFESSIONAL",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P24",
+      "name": "Profissional sem MFA",
+      "action": "individual_legal_advice",
+      "context": {
+        "mode": "PROFESSIONAL_SUPERVISED",
+        "safety": "NORMAL",
+        "actor": "PROFESSIONAL",
+        "workspaceAccess": true,
+        "professionalGrantActive": true,
+        "mfaVerified": false,
+        "explicitApproval": true,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "PROFESSIONAL",
+        "canExecute": false
+      }
+    },
+    {
+      "id": "P25",
+      "name": "Profissional com grant/MFA/revisão",
+      "action": "final_legal_document",
+      "context": {
+        "mode": "PROFESSIONAL_SUPERVISED",
+        "safety": "NORMAL",
+        "actor": "PROFESSIONAL",
+        "workspaceAccess": true,
+        "professionalGrantActive": true,
+        "mfaVerified": true,
+        "explicitApproval": true,
+        "bilateralEnabled": false,
+        "bothPartiesConsented": false
+      },
+      "expected": {
+        "permission": "PROFESSIONAL",
+        "canExecute": true
+      }
+    }
+  ]
+}

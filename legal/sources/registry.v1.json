@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "source": "User-provided Blueprint v0.1. Titles, URLs and legal claims are not independently verified.",
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Untangle — posicionamento",
+      "type": "BENCHMARK",
+      "referenceUrls": [
+        "https://untangle.us/about",
+        "https://untangle.us/"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": null,
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S2",
+      "title": "Untangle — privacidade",
+      "type": "BENCHMARK",
+      "referenceUrls": [
+        "https://untangle.us/privacy"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": null,
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S3",
+      "title": "OurFamilyWizard — mensagens",
+      "type": "BENCHMARK",
+      "referenceUrls": [
+        "https://support.ourfamilywizard.com/hc/en-us/articles/42675162216205-How-do-I-send-a-message"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": null,
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S4",
+      "title": "OurFamilyWizard — ToneMeter",
+      "type": "BENCHMARK",
+      "referenceUrls": [
+        "https://www.ourfamilywizard.com/product-features/tonemeter"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": null,
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S5",
+      "title": "Untangle — legacy features",
+      "type": "BENCHMARK",
+      "referenceUrls": [
+        "https://untangle.us/features"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": null,
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S6",
+      "title": "Casewell",
+      "type": "OPEN_SOURCE_REFERENCE",
+      "referenceUrls": [
+        "https://github.com/abrahamFerga/casewell"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": null,
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S7",
+      "title": "docassemble",
+      "type": "OPEN_SOURCE_REFERENCE",
+      "referenceUrls": [
+        "https://github.com/jhpyle/docassemble"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": null,
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S8",
+      "title": "docassemble — licença alegada no Blueprint",
+      "type": "LICENSE_REFERENCE",
+      "referenceUrls": [
+        "https://github.com/jhpyle/docassemble/blob/master/LICENSE.txt"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": null,
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S9",
+      "title": "ProMediate",
+      "type": "OPEN_SOURCE_REFERENCE",
+      "referenceUrls": [
+        "https://github.com/Humalike/promediate"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": null,
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S10",
+      "title": "Lei 8.906/1994 — referência do Blueprint",
+      "type": "LEGISLATION",
+      "referenceUrls": [
+        "https://www.planalto.gov.br/ccivil_03/leis/l8906.htm"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": "BR",
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S11",
+      "title": "Lei 13.105/2015 — CPC art. 733, referência candidata",
+      "type": "LEGISLATION",
+      "referenceUrls": [
+        "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": "BR",
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S12",
+      "title": "CNJ Resoluções 35/2007 e 571/2024 — referências",
+      "type": "REGULATION",
+      "referenceUrls": [
+        "https://atos.cnj.jus.br/atos/detalhar/179",
+        "https://atos.cnj.jus.br/atos/detalhar/5705"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": "BR",
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S13",
+      "title": "Lei 13.140/2015 — referência",
+      "type": "LEGISLATION",
+      "referenceUrls": [
+        "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13140.htm"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": "BR",
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S14",
+      "title": "STJ — referência específica alegada no Blueprint, confirmar processo/data/inteiro teor",
+      "type": "CASE_LAW",
+      "referenceUrls": [
+        "https://scon.stj.jus.br/SCON/pesquisar.jsp?O=RR&b=ACOR&p=true&preConsultaPP=7461%2F0&thesaurus=JURIDICO&tp=T"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": "BR",
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S15",
+      "title": "Lei 11.340/2006 — referência",
+      "type": "LEGISLATION",
+      "referenceUrls": [
+        "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": "BR",
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S16",
+      "title": "Lei 13.709/2018 — LGPD referência",
+      "type": "LEGISLATION",
+      "referenceUrls": [
+        "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": "BR",
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "S17",
+      "title": "OAB — consulta alegada no Blueprint, confirmar ementa/inteiro teor",
+      "type": "PROFESSIONAL_ETHICS",
+      "referenceUrls": [
+        "https://www.oab.org.br/jurisprudencia/detementa/22176"
+      ],
+      "status": "PENDING_VERIFICATION",
+      "jurisdiction": "BR",
+      "legalRetrievalAllowed": false,
+      "version": null,
+      "checksum": null,
+      "retrievedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "reviewedBy": null,
+      "reviewedAt": null
+    }
+  ]
+}

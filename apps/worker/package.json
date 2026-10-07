@@ -1,0 +1,7 @@
+{
+  "name": "@fro/worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": { "@fro/domain": "0.1.0", "zod": "4.6.5" }
+}
