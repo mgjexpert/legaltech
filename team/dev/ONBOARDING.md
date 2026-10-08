@@ -2,7 +2,8 @@
 
 ## Conhecer o estado real
 
-Ler AGENTS.md, README, architecture/DB/RLS, ADRs e VALIDATION.
+Começar pelo [pacote de transferência](HANDOFF.md), AGENTS.md, README, architecture/DB/RLS e ADRs.
+Estado atual na [revisão v0.3](../../docs/END-TO-END-REVIEW.md); VALIDATION preserva evidência histórica v0.1.
 A UI atual é fixture sintética. Auth/DB/Storage/RAG não estão ligados a ela.
 31/033/008 são próximos componentes de segurança e integração, não “polimento opcional”.
 

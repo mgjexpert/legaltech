@@ -8,7 +8,7 @@ Esta matriz distingue componentes testados de integrações reais. Ela é um reg
 
 | Componente | Estado | Evidência / limite | Tickets |
 |---|---|---|---|
-| GitHub: código e branch | Componente local testável | Branch remota conferida via Git; main ainda contém apenas README inicial. |  |
+| GitHub: código e branch | Componente local testável | Foundation integrada a main por pedido explícito; transferência técnica documentada. Conferir SHA da entrega via Git remoto; merge não é deploy nem integração dos serviços. |  |
 | GitHub Actions / PR / branch protection | Não verificado externamente | Workflow existe; API Github Forbidden impede confirmar resultados remotos e proteção. |  |
 | Dashboard e navegação | Integrado em demonstração sintética | UI de sessão com fixtures, sem login/persistência. | [FRO-008](MVP-BACKLOG.md), [FRO-033](MVP-BACKLOG.md) |
 | Intake, fatos e preparação | Integrado em demonstração sintética | Schemas e cálculos usados pela UI; contexto por case/workspace, sem autorização de sessão. | [FRO-016](MVP-BACKLOG.md), [FRO-018](MVP-BACKLOG.md), [FRO-026](MVP-BACKLOG.md) |

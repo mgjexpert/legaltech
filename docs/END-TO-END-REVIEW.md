@@ -1,5 +1,10 @@
 # Revisão de ponta a ponta — v0.3
 
+Registro da auditoria do código até e7af2d9. Depois desta auditoria, o responsável solicitou integração em main
+e transferência técnica; entrega atual em [HANDOFF](../team/dev/HANDOFF.md).
+As observações sobre branch/main e ausência de merge abaixo descrevem o estado durante a auditoria.
+Integração Git atual na [matriz](INTEGRATION-STATUS.md); os bloqueios de funcionalidades reais continuam válidos.
+
 ## Conclusão
 
 **Não podemos confirmar que tudo está integrado.** Existe uma base de engenharia com fluxo sintético de ponta a ponta

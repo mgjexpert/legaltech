@@ -50,6 +50,7 @@ E2E exige build prévio e inicia um servidor de produção exclusivo na porta 31
 
 ## Entrega para a equipe
 
+- [Pacote de transferência técnica](team/dev/HANDOFF.md), [deploy Vercel/VPS/Supabase](team/dev/DEPLOYMENT.md)
 - [Revisão de arquitetura e lacunas](docs/ARCHITECTURE-REVIEW.md)
 - [Arquitetura e contratos](docs/ARCHITECTURE.md), [modelo de dados/RLS](docs/DATA-MODEL.md)
 - [Plano de execução](docs/EXECUTION-PLAN.md), [30 tickets + bloqueadores](docs/MVP-BACKLOG.md)

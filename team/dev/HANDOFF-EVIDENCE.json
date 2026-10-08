@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "delivery": "Technical handoff 2026-10-08",
+  "sourceCommit": "e7af2d905161ac3c7bb5af5cc79ac5198c8fe5fd",
+  "deliveryBranch": "main",
+  "authorization": "User explicitly requested integrating all work into main and documenting technical transfer",
+  "changes": "Documentation and current Git integration record; runtime source unchanged from audited sourceCommit",
+  "checks": [
+    { "command": "npm run check", "status": "PASS", "scope": "Full sequential pipeline on the handoff tree" },
+    { "command": "npm run check:docs", "status": "PASS", "markdownFiles": 46, "jsonFiles": 19, "localLinks": 188, "integrationRecords": 32 },
+    { "command": "npm run typecheck", "status": "PASS" },
+    { "command": "npm test", "status": "PASS", "passed": 72, "failed": 0 },
+    { "command": "npm run test:db", "status": "PASS", "passed": 39, "failed": 0, "scope": "Real disposable Postgres with simulated auth claims, not hosted Supabase" },
+    { "command": "npm run build", "status": "PASS" },
+    { "command": "npm run test:e2e", "status": "PASS", "passed": 3, "failed": 0, "scope": "Production artifact on exclusive loopback server; Chromium" },
+    { "command": "git diff --check", "status": "PASS" },
+    { "command": "sha256sum docs/BLUEPRINT.md", "status": "PASS", "sha256": "792fe55a66b5024939412a927e151ed07b06bf2b2debf6f776da3dbbd09f7164", "scope": "Matches preserved original uploaded Markdown" }
+  ],
+  "publicationVerification": "Compare local delivery HEAD with git ls-remote origin refs/heads/main after push; final SHA reported with delivery",
+  "deploymentExecuted": false,
+  "productionReady": false,
+  "externalCiAndBranchProtection": "Unverified; GitHub API returned Forbidden in prior audit",
+  "technicalAcceptance": "Pending named team owners and reproduction in their environment"
+}

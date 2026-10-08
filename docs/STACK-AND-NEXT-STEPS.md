@@ -55,7 +55,7 @@ Não hospedar modelo grande/GPU nesta VPS pequena; usar API aprovada ou sizing e
 
 ## Ordem de execução
 
-1. Revisar a branch foundation já publicada e registrar aceite/merge controlado; branch publicada não equivale a merge/deploy.
+1. Receber a foundation em main, confirmar SHA/CI remota e nomear maintainers/reviewers; merge não equivale a deploy.
 2. Nomear tech lead, product, counsel/privacy e safety; aceitar ADRs e definir região/contas/domínio.
 3. Integrar auth/MFA (FRO-008), consentimentos (031) e comandos transacionais (033) com Supabase staging.
 4. Validar RLS também via API e Storage; tirar o dashboard das fixtures apenas no staging autorizado.
@@ -73,3 +73,4 @@ Custos variáveis: hosting, DB/storage/egress, worker/OCR, IA por uso, email e m
 Infra privada nunca vai em README: secret manager/variáveis do provider. Tokens e dados de clientes não entram no Git.
 
 Guias: [time dev](../team/dev/README.md), [marketing](../marketing/README.md), [assistência IA](../ai/customer-assistance/README.md), [Hermes](../ai/customer-assistance/integrations/HERMES-ASSESSMENT.md).
+Transferência: [pacote técnico](../team/dev/HANDOFF.md) e [procedimentos de deploy](../team/dev/DEPLOYMENT.md).

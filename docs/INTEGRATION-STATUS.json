@@ -10,9 +10,10 @@
       "id": "git",
       "name": "GitHub: código e branch",
       "status": "LOCAL_COMPONENT",
-      "evidence": "Branch remota conferida via Git; main ainda contém apenas README inicial.",
+      "evidence": "Foundation integrada a main por pedido explícito; transferência técnica documentada. Conferir SHA da entrega via Git remoto; merge não é deploy nem integração dos serviços.",
       "files": [
         "README.md",
+        "team/dev/HANDOFF.md",
         ".github/workflows/ci.yml"
       ],
       "tickets": []

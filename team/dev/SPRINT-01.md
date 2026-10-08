@@ -15,4 +15,5 @@ Objetivo: um humano autenticado cria e retoma seu caso privado em staging, com R
 | 8 | Staging sintético Vercel e smoke | dev/ops | previews restritas; teste funcional com sessões reais e dados sintéticos |
 
 Não incorporar OCR/LLM ou campanha paga ao caminho crítico desta iteração.
-Saída: evidência de cada critério + atualização VALIDATION; itens não executados continuam registrados como não executados.
+Saída: evidência de cada critério + novo registro de execução e atualização da matriz de integração;
+preservar VALIDATION como histórico. Itens não executados continuam registrados como não executados.
