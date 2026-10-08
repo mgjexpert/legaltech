@@ -8,6 +8,7 @@ Ponto de entrada da equipe. Especificações canônicas continuam em docs/; esta
 4. [Stack e sequência de provisionamento](../../docs/STACK-AND-NEXT-STEPS.md)
 5. [Plano/backlog](../../docs/EXECUTION-PLAN.md) / [tickets](../../docs/MVP-BACKLOG.md)
 6. [Revisão arquitetural](../../docs/ARCHITECTURE-REVIEW.md) / [validação atual](../../docs/VALIDATION.md)
+7. [Auditoria v0.3](../../docs/END-TO-END-REVIEW.md) / [matriz de integração](../../docs/INTEGRATION-STATUS.md)
 
 Papéis a nomear: tech lead, devs, QA/security, product, counsel/privacy, safety/incident owner.
 Não existe aprovação humana presumida apenas por criar esses papéis no documento.

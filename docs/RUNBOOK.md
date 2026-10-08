@@ -9,6 +9,7 @@ Docker é necessário apenas aos testes de Postgres. Chromium de sistema ou Play
 ```bash
 cd /workspace/legaltech
 npm ci --cache /tmp/legaltech-npm-cache
+npm run check:docs
 npm run typecheck
 npm test
 npm run test:db
@@ -29,6 +30,7 @@ npm run dev
 ```
 
 Para validar o artefato de produção: npm run build e npm run start. Escuta 127.0.0.1:3000.
+E2E usa o build em servidor próprio 127.0.0.1:3100, não reutiliza outro processo e exige npm run build antes.
 Readiness web: GET /api/health deve informar status=ok, synthetic-demo, persistence=false;
 GET / deve exibir ambiente de testes e “Visão geral”. A health não afirma DB/Auth prontos.
 Não criar links de preview de loopback no onboarding. Reutilizar apenas servidor da mesma aplicação e diretório.
@@ -39,6 +41,7 @@ Se a porta estiver ocupada, identificar antes; nunca matar processo desconhecido
 - Cache npm sem permissão: usar --cache /tmp/legaltech-npm-cache; não desativar TLS/integridade.
 - Node incompatível: ativar runtime da .nvmrc; engine-strict exige Node 24, npm 11.
 - Docker indisponível: checar docker info; teste DB precisa de daemon real. Script limpa apenas seu container fro-test-*.
+- Startup DB: o init server da imagem usa socket e depois reinicia; aguardar TCP interno com pg_isready -h 127.0.0.1, sem publicar porta.
 - Pull bloqueado: registrar hostname/erro do proxy e ajustar domínio em settings com preservação da allowlist; não desligar verification.
 - Grant test falha: ler row count e roles usados; não testar com BYPASSRLS/superuser como usuário.
 - Startup após mudança web: reconstruir para npm run start; npm run dev recompila por demanda.
@@ -50,6 +53,12 @@ Antes de secrets, inspecionar apenas nomes/status; nunca env dumps. Sem credenci
 Para Supabase futuro: URL pública, anon/publishable key, sessão real no servidor; service-role é credencial privada worker-only.
 Nenhum desses valores foi inventado ou adicionado nesta entrega. Supabase DB/Storage/MFA exigem configuração própria.
 Network futura: domínios exatos do projeto Supabase, fontes oficiais e vendors aprovados; allowlist deve preservar destinos existentes.
+
+## Documentação e matriz de integração
+
+Atualizar docs/INTEGRATION-STATUS.json somente com evidência; executar npm run docs:generate e npm run check:docs.
+O checker valida links locais/JSON/coerência de drafts e gera tabela; não faz health check de serviço externo nem valida mérito jurídico.
+Estado atual e bloqueadores: docs/END-TO-END-REVIEW.md. Histórico anterior: docs/VALIDATION.md.
 
 ## Operações ainda pendentes
 

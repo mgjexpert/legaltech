@@ -30,13 +30,16 @@ async function main() {
   try {
     let ready = false;
     for (let attempt=0;attempt<50;attempt++) {
-      try { run(["exec",container,"pg_isready","-U","postgres"]); ready=true; break; }
+      // The image init server listens only on a Unix socket and is shut down
+      // before the final server starts. TCP readiness excludes that transient phase.
+      try { run(["exec",container,"pg_isready","-h","127.0.0.1","-U","postgres"]); ready=true; break; }
       catch { await new Promise(resolve => setTimeout(resolve,200)); }
     }
     assert.ok(ready,"Postgres did not become ready");
     sql(readFileSync("packages/db/tests/bootstrap.sql","utf8"));
+    sql("create table public.external_module_fixture(id integer); insert into public.external_module_fixture values(1); grant select on public.external_module_fixture to authenticated");
     const migrations = readdirSync("packages/db/migrations").filter(n=>n.endsWith(".sql")).sort();
-    assert.equal(migrations.length,2);
+    assert.deepEqual(migrations,["0001_matter_core.sql","0002_audit_and_jobs.sql","0003_integrity_guards.sql"]);
     for (const file of migrations) sql(readFileSync("packages/db/migrations/" + file,"utf8"));
     sql(`
       insert into auth.users(id) values ${[1,2,3,4,5].map(n=>"('"+uuid(n)+"')").join(",")};
@@ -77,6 +80,7 @@ async function main() {
         ('${uuid(10)}','${uuid(21)}','income','2000','USER_DECLARATION','${uuid(2)}');
     `);
     test("pgvector installed",()=>assert.equal(sql("select count(*) from pg_extension where extname='vector'"),"1"));
+    test("migrations preserve permissions on unrelated tables",()=>assert.equal(actor(1,"select count(*) from public.external_module_fixture"),"1"));
     test("A sees own + shared documents only",()=>assert.equal(actor(1,"select string_agg(original_filename,',' order by original_filename) from public.documents"),"A-sintetico.pdf,shared-sintetico.pdf"));
     test("B sees own + shared documents only",()=>assert.equal(actor(2,"select string_agg(original_filename,',' order by original_filename) from public.documents"),"B-sintetico.pdf,shared-sintetico.pdf"));
     test("unrelated case cannot see case 10",()=>assert.equal(actor(4,"select count(*) from public.cases where id='"+uuid(10)+"'"),"0"));
@@ -110,6 +114,12 @@ async function main() {
       "insert into public.facts(case_id,workspace_id,fact_key,value_json,source_type,source_document_version_id,source_page) values ('"+uuid(10)+"','"+uuid(21)+"','bad','1','DOCUMENT','"+uuid(50)+"',1)"),/foreign key constraint/));
     test("confirmed fact requires confirmation metadata",()=>denied(()=>sql(
       "insert into public.facts(case_id,workspace_id,fact_key,value_json,source_type,source_asserted_by,status) values ('"+uuid(10)+"','"+uuid(20)+"','bad','1','USER_DECLARATION','"+uuid(1)+"','CONFIRMED')"),/check constraint/));
+    for (const value of ["-1","1.5",'"650000"',"true","9007199254740992"]) {
+      test("DB rejects malformed income cents "+value,()=>denied(()=>sql(
+        "insert into public.facts(case_id,workspace_id,fact_key,value_json,source_type,source_asserted_by) values ('"+uuid(10)+"','"+uuid(20)+"','monthly_income_cents','"+value+"','USER_DECLARATION','"+uuid(1)+"')"),/income_fact_safe_cents/));
+    }
+    test("DB accepts zero income as numeric cents",()=>sql(
+      "insert into public.facts(case_id,workspace_id,fact_key,value_json,source_type,source_asserted_by) values ('"+uuid(10)+"','"+uuid(20)+"','monthly_income_cents','0','USER_DECLARATION','"+uuid(1)+"')"));
     test("authenticated cannot write arbitrary records",()=>denied(()=>actor(1,
       "insert into public.children(case_id,workspace_id,name_or_alias) values ('"+uuid(10)+"','"+uuid(20)+"','bad')"),/permission denied/));
     test("RLS blocks inserts even if table permission is accidentally granted",()=>{
@@ -118,6 +128,8 @@ async function main() {
       finally { sql("revoke insert on public.children from authenticated"); }
     });
     test("document versions are immutable",()=>denied(()=>sql("update public.document_versions set storage_key='bad'"),/APPEND_ONLY/));
+    test("document version truncate cannot bypass immutability",()=>denied(()=>sql("truncate public.document_versions cascade"),/APPEND_ONLY/));
+    test("scan result truncate cannot bypass immutability",()=>denied(()=>sql("truncate public.document_scan_results"),/APPEND_ONLY/));
     test("grant cannot be issued by the other party",()=>denied(()=>sql(
       "insert into public.professional_access_grants(workspace_id,professional_user_id,grantor_user_id,consent_reference,expires_at) values ('"+uuid(20)+"','"+uuid(3)+"','"+uuid(2)+"','"+uuid(91)+"',now()+interval '1 day')"),/foreign key constraint/));
     test("authenticated cannot call audit definer",()=>denied(()=>actor(1,

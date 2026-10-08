@@ -205,7 +205,10 @@ begin
     execute format('create policy scoped_read on public.%I for select to authenticated using (app_private.can_read_workspace(workspace_id))',tbl);
   end loop;
 end $$;
-revoke all on all tables in schema public from anon,authenticated;
+-- Revoke only the tables owned by this migration. Other modules may share public.
+revoke all on public.organizations,public.organization_members,public.cases,public.case_members,public.workspaces,
+  public.professional_access_grants,public.parties,public.children,public.intake_snapshots,public.safety_assessments,
+  public.documents,public.document_versions,public.document_scan_results,public.facts from anon,authenticated;
 grant select on public.organizations,public.organization_members,public.cases,public.case_members,public.workspaces,
   public.professional_access_grants,public.parties,public.children,public.intake_snapshots,public.safety_assessments,
   public.documents,public.document_versions,public.document_scan_results,public.facts to authenticated;

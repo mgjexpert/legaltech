@@ -1,4 +1,4 @@
-import type { CaseMode, SafetyState } from "@fro/domain";
+import { CaseModeSchema, SafetyStateSchema, type CaseMode, type SafetyState } from "@fro/domain";
 
 export const ACTIONS = [
   "classify_document", "calculate_finances", "propose_rewrite", "send_message",
@@ -30,7 +30,21 @@ export interface PolicyDecision {
 function decision(permission: PermissionClass, canExecute: boolean, reason: string, ruleId: string): PolicyDecision {
   return { permission, canExecute, reason, ruleId, ruleVersion: 1 };
 }
-export function evaluatePolicy(action: string, ctx: PolicyContext): PolicyDecision {
+const booleanFields = ["workspaceAccess","professionalGrantActive","mfaVerified","explicitApproval","bilateralEnabled","bothPartiesConsented"] as const;
+const contextFields = new Set<string>(["mode","safety","actor",...booleanFields]);
+function isPolicyContext(input: unknown): input is PolicyContext {
+  if (input === null || typeof input !== "object" || Array.isArray(input)) return false;
+  const data = input as Record<string,unknown>;
+  return Object.keys(data).every(key => contextFields.has(key))
+    && CaseModeSchema.safeParse(data.mode).success
+    && SafetyStateSchema.safeParse(data.safety).success
+    && typeof data.actor === "string" && ["HUMAN","AGENT","PROFESSIONAL"].includes(data.actor)
+    && booleanFields.every(key => typeof data[key] === "boolean");
+}
+export function evaluatePolicy(action: string, ctx: unknown): PolicyDecision {
+  // Shape validation is defensive only. The BFF still derives identity, grants and
+  // consent from trusted server records; a valid client object is not authorization.
+  if (!isPolicyContext(ctx)) return decision("BLOCK", false, "Contexto de policy inválido.", "TECH-CONTEXT-001");
   if (!ctx.workspaceAccess) return decision("BLOCK", false, "Sem acesso ao workspace.", "TECH-ACCESS-001");
   if (!ACTIONS.includes(action as Action)) return decision("BLOCK", false, "Ação desconhecida.", "TECH-DEFAULT-DENY-001");
   if (action === "disclose_private_to_counterparty")

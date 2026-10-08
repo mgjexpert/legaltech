@@ -8,6 +8,9 @@ O dashboard não autentica, não grava em banco e não chama LLM. Não há uploa
 negociação, consulta jurídica ou Portal Profissional funcional. O backend/RLS é validado separadamente
 em Postgres real; ainda não está integrado ao dashboard.
 
+Revisão atual: [ponta a ponta v0.3](docs/END-TO-END-REVIEW.md) e [matriz de integração](docs/INTEGRATION-STATUS.md).
+Não há confirmação de integração completa. Os componentes locais, contratos e serviços não verificados estão discriminados na matriz.
+
 ## Começar
 
 Node 24 (pin em .nvmrc), npm 11 e Docker para os testes de banco.
@@ -31,6 +34,7 @@ Alterações são somente da sessão; recarregar restaura as fixtures. Nunca ins
 
 ```bash
 npm run typecheck
+npm run check:docs
 npm test
 npm run test:db
 npm run build
@@ -42,6 +46,7 @@ Os testes de banco iniciam um container descartável sem rede/porta publicada, a
 container/volume ao terminar. Bootstrap auth é exclusivo dos testes: nunca aplicá-lo em Supabase.
 Se Docker não estiver disponível, esses testes ficam **não executados**, sem substituir por mocks.
 Imagem Postgres/pgvector fixada por digest; lockfile e npm ci preservam resolução.
+E2E exige build prévio e inicia um servidor de produção exclusivo na porta 3100, sem reutilizar a aplicação de desenvolvimento.
 
 ## Entrega para a equipe
 

@@ -1,5 +1,7 @@
 # Threat model e segurança v0.1
 
+Correções e regressões da base na [revisão v0.3](END-TO-END-REVIEW.md); estados reais na [matriz](INTEGRATION-STATUS.md).
+
 Ativos: dados privados A/B, dados infantis, credenciais, documentos originais, grants/consents,
 fonte jurídica/policy, trilha audit e disponibilidade do canal. Agressores: contraparte, impostor,
 usuário autenticado de outro caso/escritório, documento hostil, provider, insider e atacante externo.

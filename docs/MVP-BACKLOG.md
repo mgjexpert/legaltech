@@ -4,6 +4,10 @@ Os IDs FRO-001…030 preservam os 30 primeiros tickets do Blueprint (§47). As l
 Papéis sugeridos, não pessoas já designadas. S/M/L são tamanhos relativos; estimar após discovery.
 Nenhum status “base” significa feature de produção completa. As dependências são portas de integração; spikes sintéticos podem avançar antes delas.
 
+Revisão v0.3: [lacunas e prioridades atuais](END-TO-END-REVIEW.md), [matriz de integração](INTEGRATION-STATUS.md).
+As correções de validação/imutabilidade e os novos testes fortalecem a base de 004/010/023/025;
+não encerram esses tickets, cujos critérios incluem integração e revisão independente.
+
 ## FRO-001 — ADR matter-centric
 
 Responsável: Arquitetura. Tamanho: S. Dependências: —. Prioridade: P1.

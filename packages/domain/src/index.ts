@@ -13,9 +13,12 @@ export type SafetyState = z.infer<typeof SafetyStateSchema>;
 export type CaseStatus = z.infer<typeof CaseStatusSchema>;
 
 const cents = z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER);
+export const BRAZILIAN_STATES = [
+  "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO",
+] as const;
 export const IntakeSchema = z.object({
   relationship: z.enum(["MARRIAGE", "STABLE_UNION", "OTHER"]).optional(),
-  state: z.string().regex(/^[A-Z]{2}$/).optional(),
+  state: z.enum(BRAZILIAN_STATES).optional(),
   hasChildren: z.boolean().optional(),
   objective: z.enum(["PREPARE", "ORGANIZE_SUPPORT", "PROFESSIONAL_REVIEW"]).optional(),
   monthlyIncomeCents: cents.optional(),
@@ -48,6 +51,9 @@ export const FactSchema = z.object({
 }).strict().superRefine((fact, ctx) => {
   if (fact.status === "CONFIRMED" && (!fact.confirmedBy || !fact.confirmedAt)) {
     ctx.addIssue({ code: "custom", message: "Fato confirmado exige autor e timestamp de confirmação." });
+  }
+  if (fact.key === "monthly_income_cents" && !cents.safeParse(fact.value).success) {
+    ctx.addIssue({ code: "custom", path: ["value"], message: "Renda exige centavos inteiros, não negativos e dentro do limite seguro." });
   }
 });
 export type Fact = z.infer<typeof FactSchema>;

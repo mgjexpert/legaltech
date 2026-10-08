@@ -1,8 +1,11 @@
 # Arquitetura v0.1
 
 Status: proposta implementada parcialmente na base; revisão jurídica/produto continua pendente.
+Integrações atuais e limites: [revisão v0.3](END-TO-END-REVIEW.md) e [matriz de evidências](INTEGRATION-STATUS.md).
 
 ## Contexto e componentes
+
+Diagrama de arquitetura alvo; setas representam conexões a implementar, não integrações comprovadas.
 
 ```mermaid
 flowchart LR

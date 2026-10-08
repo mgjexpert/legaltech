@@ -1,8 +1,12 @@
 # Modelo de dados e RLS v0.1
 
 Alvo: Supabase/Postgres 17 + pgvector. Testado em Postgres real com auth/roles simulados apenas no bootstrap de teste.
-Aplicar migrations 0001 e 0002 em ordem; NÃO aplicar packages/db/tests/bootstrap.sql em Supabase.
+Aplicar migrations 0001, 0002 e 0003 em ordem; NÃO aplicar packages/db/tests/bootstrap.sql em Supabase.
 Scripts de migração são one-shot com histórico de runner: não rerodar CREATE TYPE/TABLE em banco já migrado.
+0003 é aditiva e inclui proteção de TRUNCATE documental e centavos seguros para monthly_income_cents.
+Dados financeiros inválidos pré-existentes interrompem a migration; auditar/corrigir por procedimento autorizado, sem arredondar evidência.
+A alteração em 0001 limita REVOKE às tabelas do core para novas instalações. Não reaplicar 0001 em banco já migrado;
+permissões de outros módulos afetadas pela versão antiga precisam ser revisadas a partir do histórico, sem GRANT amplo.
 
 ```mermaid
 erDiagram
@@ -33,7 +37,9 @@ Registry jurídico JSON é documentação com referências pendentes, não tabel
 
 - FK (workspace_id,case_id) impede identidade de caso misturada. Fatos DOCUMENT referenciam versão do mesmo workspace/caso.
 - Fato CONFIRMED exige confirmed_by/at. Isso registra confirmação, não certifica verdade.
+- monthly_income_cents exige JSON numérico inteiro, não negativo e dentro do limite de Number.MAX_SAFE_INTEGER.
 - Versões originais e scan results são imutáveis; document status é separado e mutável por futuros comandos autorizados.
+- Triggers documentais também recusam TRUNCATE, incluindo CASCADE; não protegem contra DBA que remove/desativa os guards.
 - Um shared workspace pode existir sem canal bilateral. Nenhum endpoint de compartilhamento está habilitado.
 - Safety UNKNOWN não é NORMAL. Avaliações são privadas; não colocar relato de violência em cases.
 - grants por workspace, proprietário concedente, profissional, consent_reference e expires_at. consent_reference ainda não tem FK.

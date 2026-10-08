@@ -52,6 +52,18 @@ describe("preparation semantics",()=>{
   });
 });
 describe("money and case state",()=>{
+  it("accepts only an actual Brazilian federative unit",()=>{
+    expect(IntakeSchema.safeParse({state:"ZZ"}).success).toBe(false);
+    expect(IntakeSchema.safeParse({state:"SP"}).success).toBe(true);
+    expect(IntakeSchema.safeParse({state:"DF"}).success).toBe(true);
+  });
+  it.each([-1,1.5,"650000",true,Number.MAX_SAFE_INTEGER+1])("rejects invalid income fact cents %s",value=>{
+    expect(FactSchema.safeParse({...demoFact,value}).success).toBe(false);
+  });
+  it("allows zero income without treating it as unanswered",()=>{
+    expect(FactSchema.safeParse({...demoFact,value:0}).success).toBe(true);
+    expect(calculateReadiness({monthlyIncomeCents:0},[],[],ctx).intake.answered).toBe(1);
+  });
   it("sums in integer cents",()=>expect(sumCents([10010,20020])).toBe(30030));
   it.each([1.5,-1,NaN,Infinity])("rejects invalid cents %s",(value)=>expect(()=>sumCents([value])).toThrow());
   it("rejects overflow",()=>expect(()=>sumCents([Number.MAX_SAFE_INTEGER,1])).toThrow(/limite/));

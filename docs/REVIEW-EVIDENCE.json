@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "review": "v0.3",
+  "baselineCommit": "6489930ea1740ded7c4b332308334ae394ece57c",
+  "scope": "Local synthetic development; no production data or deployments",
+  "blueprint": {
+    "sha256": "792fe55a66b5024939412a927e151ed07b06bf2b2debf6f776da3dbbd09f7164",
+    "identicalToUploadedMarkdown": true
+  },
+  "reproduction": {
+    "baselineUnitTestsPassed": 57,
+    "newRegressionSuiteBeforeFix": {
+      "passed": 59,
+      "failed": 13
+    },
+    "databaseStartupFailure": "pg_isready used the temporary init Unix-socket server; final TCP readiness now required"
+  },
+  "checks": [
+    {
+      "command": "npm run check",
+      "status": "PASS",
+      "scope": "Documentation, TypeScript, unit tests, real disposable Postgres, production build and Chromium E2E executed sequentially"
+    },
+    {
+      "command": "npm run typecheck",
+      "status": "PASS"
+    },
+    {
+      "command": "npm test",
+      "status": "PASS",
+      "passed": 72,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:db",
+      "status": "PASS",
+      "passed": 39,
+      "failed": 0,
+      "database": "Postgres 17 + pgvector, disposable Docker container; no external ports; simulated auth claims"
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS"
+    },
+    {
+      "command": "npm run test:e2e",
+      "status": "PASS",
+      "passed": 3,
+      "failed": 0,
+      "server": "Exclusive production artifact on 127.0.0.1:3100; Chromium"
+    },
+    {
+      "command": "npm audit --audit-level=high",
+      "status": "PASS",
+      "vulnerabilities": 0,
+      "scope": "Dependency advisories only; not application security certification"
+    },
+    {
+      "command": "npm run check:docs",
+      "status": "PASS",
+      "markdownFiles": 44,
+      "jsonFiles": 18,
+      "localLinks": 146,
+      "integrationRecords": 32,
+      "negativeChecks": [
+        "Broken local link rejected",
+        "Generated matrix drift rejected"
+      ]
+    }
+  ],
+  "externalVerification": {
+    "gitRemoteRefs": "Verified via native Git; review publication verified separately by remote HEAD after push",
+    "githubApi": "Forbidden; remote Actions runs, PRs and branch protections unverified",
+    "githubPlugin": "No callable GitHub plugin tools available in this session",
+    "supabaseAuthStorageHostingProvidersChannels": "Not tested against external services"
+  },
+  "notCovered": [
+    "Real session/JWT/MFA and Storage authorization",
+    "Persistent Web-to-database workflow and transactional commands",
+    "LLM evaluations, legal source approval and independent legal/privacy review",
+    "Backup restore drill, external audit checkpoints and production deployment",
+    "Universal absence of defects"
+  ]
+}

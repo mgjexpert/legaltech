@@ -9,14 +9,14 @@ export default defineConfig({
   retries: 0,
   reporter: "list",
   use: {
-    baseURL: "http://127.0.0.1:3000",
+    baseURL: "http://127.0.0.1:3100",
     browserName: "chromium",
     launchOptions: { ...(systemChromium ? {executablePath:systemChromium} : {}), args: ["--no-sandbox"] },
   },
   webServer: {
-    command: "npm run dev",
-    url: "http://127.0.0.1:3000/api/health",
-    reuseExistingServer: !process.env.CI,
+    command: "npm run start --workspace @fro/web -- --port 3100",
+    url: "http://127.0.0.1:3100/api/health",
+    reuseExistingServer: false,
     timeout: 60_000,
   },
 });

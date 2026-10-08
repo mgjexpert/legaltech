@@ -15,3 +15,7 @@ Use o checkout existente: cada tarefa cloud já é isolada; não crie worktree s
 - Não publique, faça deploy ou habilite dados reais apenas por passar os testes da base.
 
 Entrega atual e pendências: docs/VALIDATION.md. Alterações legais exigem revisão por pessoa diferente da autora.
+
+Revisão atual: docs/END-TO-END-REVIEW.md e docs/INTEGRATION-STATUS.json.
+Ao mudar estado de componente, atualizar o JSON com evidência e executar npm run docs:generate + npm run check:docs.
+Nunca declarar integração real por existir pasta, contrato, enum, workflow ou variável. E2E testa artefato de produção em porta exclusiva.

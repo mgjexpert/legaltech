@@ -42,7 +42,8 @@ flowchart LR
 ```
 
 A seta DNS representa resolução; proxy Cloudflare é configuração opcional, não integração já feita.
-Serviços ainda não estão provisionados ou ligados à Web. A aplicação atual é sintética e não autentica/persiste.
+Provisionamento externo não foi verificado; não há conexão de Auth/DB/Storage na Web desta base.
+A aplicação atual é sintética e não autentica/persiste. Estado por componente: [matriz de integração](INTEGRATION-STATUS.md).
 
 ## VPS: decisão prática
 
@@ -54,7 +55,7 @@ Não hospedar modelo grande/GPU nesta VPS pequena; usar API aprovada ou sizing e
 
 ## Ordem de execução
 
-1. Colocar foundation e estas pastas em branch GitHub para review; a criação da branch não equivale a merge/deploy.
+1. Revisar a branch foundation já publicada e registrar aceite/merge controlado; branch publicada não equivale a merge/deploy.
 2. Nomear tech lead, product, counsel/privacy e safety; aceitar ADRs e definir região/contas/domínio.
 3. Integrar auth/MFA (FRO-008), consentimentos (031) e comandos transacionais (033) com Supabase staging.
 4. Validar RLS também via API e Storage; tirar o dashboard das fixtures apenas no staging autorizado.

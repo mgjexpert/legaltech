@@ -20,7 +20,9 @@
     "test": "vitest run",
     "test:db": "tsx scripts/test-db.ts",
     "test:e2e": "playwright test",
-    "check": "npm run typecheck && npm test && npm run test:db && npm run build && npm run test:e2e"
+    "check:docs": "node scripts/check-docs.mjs",
+    "docs:generate": "node scripts/check-docs.mjs --write",
+    "check": "npm run check:docs && npm run typecheck && npm test && npm run test:db && npm run build && npm run test:e2e"
   },
   "devDependencies": {
     "@types/node": "24.10.1",

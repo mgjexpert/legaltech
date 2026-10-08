@@ -2,6 +2,9 @@
 
 Data: 06/10/2026. Validação na instância cloud atual, não em produção/Supabase hospedado.
 
+Este arquivo preserva o registro da entrega v0.1. Para a revisão atual e novas contagens/migrations,
+ver [ponta a ponta v0.3](END-TO-END-REVIEW.md), [evidências atuais](REVIEW-EVIDENCE.json) e [matriz](INTEGRATION-STATUS.md).
+
 ## O que foi entregue
 
 - Blueprint original preservado, revisão com 22 lacunas priorizadas, arquitetura/ERD, 5 ADRs e governança.
@@ -13,7 +16,7 @@ Data: 06/10/2026. Validação na instância cloud atual, não em produção/Supa
 - Duas migrations Postgres/pgvector: RLS, metadados de caso, workspaces, grants temporais, documentos/fatos,
   auditoria append-only e contratos de outbox/idempotência.
 - Registry com 17 referências PENDING_VERIFICATION; regras jurídicas DRAFT/inativas.
-- CI definida (não executada no GitHub nesta entrega). README/AGENTS/runbooks para continuação.
+- CI definida; resultados remotos não verificados. README/AGENTS/runbooks para continuação.
 
 ## Resultados executados
 

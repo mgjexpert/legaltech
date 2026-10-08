@@ -16,4 +16,17 @@ describe("25 synthetic deterministic golden policy cases",()=>{
     const context={...dataset.cases[24]!.context,professionalGrantActive:false} as PolicyContext;
     expect(evaluatePolicy("final_legal_document",context).canExecute).toBe(false);
   });
+  it.each([null, {}, {...dataset.cases[0]!.context,workspaceAccess:"false"},
+    {...dataset.cases[0]!.context,mode:"UNRECOGNIZED"},
+    {...dataset.cases[0]!.context,safety:"UNRECOGNIZED"},
+    {...dataset.cases[0]!.context,actor:"UNKNOWN"},
+    {...dataset.cases[0]!.context,explicitApproval:"true"}])("blocks malformed runtime context %#",context=>{
+    const result=evaluatePolicy("calculate_finances",context as unknown as PolicyContext);
+    expect(result.permission).toBe("BLOCK");
+    expect(result.canExecute).toBe(false);
+  });
+  it("does not permit a material action with string approval",()=>{
+    const context={...dataset.cases[19]!.context,explicitApproval:"false"} as unknown as PolicyContext;
+    expect(evaluatePolicy("share_document",context).canExecute).toBe(false);
+  });
 });

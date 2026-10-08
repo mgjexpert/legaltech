@@ -12,6 +12,7 @@ Node 24.19.0, npm 11.9.0, Docker para DB, Chromium/Playwright para E2E.
 
 ```bash
 npm ci --cache /tmp/legaltech-npm-cache
+npm run check:docs
 npm run typecheck
 npm test
 npm run test:db
@@ -20,6 +21,7 @@ npm run test:e2e
 ```
 
 npm run dev para editar; npm run start para artefato já construído. Não usar production data em testes.
+E2E exige build e utiliza servidor próprio na porta 3100; não reaproveita o servidor dev.
 Migrations do core se aplicam em Supabase com auth/roles próprios; bootstrap.sql só em DB descartável.
 
 ## Ambientes e contas

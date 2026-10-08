@@ -1,0 +1,457 @@
+{
+  "schemaVersion": 1,
+  "review": "v0.3",
+  "baselineCommit": "6489930ea1740ded7c4b332308334ae394ece57c",
+  "allIntegrated": false,
+  "productionReady": false,
+  "scope": "Repository and local synthetic workflow. External accounts and deployments are unverified.",
+  "components": [
+    {
+      "id": "git",
+      "name": "GitHub: código e branch",
+      "status": "LOCAL_COMPONENT",
+      "evidence": "Branch remota conferida via Git; main ainda contém apenas README inicial.",
+      "files": [
+        "README.md",
+        ".github/workflows/ci.yml"
+      ],
+      "tickets": []
+    },
+    {
+      "id": "ci",
+      "name": "GitHub Actions / PR / branch protection",
+      "status": "UNVERIFIED",
+      "evidence": "Workflow existe; API Github Forbidden impede confirmar resultados remotos e proteção.",
+      "files": [
+        ".github/workflows/ci.yml"
+      ],
+      "tickets": []
+    },
+    {
+      "id": "web",
+      "name": "Dashboard e navegação",
+      "status": "SYNTHETIC_INTEGRATED",
+      "evidence": "UI de sessão com fixtures, sem login/persistência.",
+      "files": [
+        "apps/web/app/dashboard.tsx",
+        "apps/web/app/demo.ts"
+      ],
+      "tickets": [
+        "008",
+        "033"
+      ]
+    },
+    {
+      "id": "domain",
+      "name": "Intake, fatos e preparação",
+      "status": "SYNTHETIC_INTEGRATED",
+      "evidence": "Schemas e cálculos usados pela UI; contexto por case/workspace, sem autorização de sessão.",
+      "files": [
+        "packages/domain/src/index.ts",
+        "tests/domain.test.ts"
+      ],
+      "tickets": [
+        "016",
+        "018",
+        "026"
+      ]
+    },
+    {
+      "id": "policy",
+      "name": "Policy Engine técnico",
+      "status": "LOCAL_COMPONENT",
+      "evidence": "25 contratos determinísticos e guard runtime; não chamado por BFF de ações reais.",
+      "files": [
+        "packages/policy-engine/src/index.ts",
+        "tests/policy.test.ts"
+      ],
+      "tickets": [
+        "004",
+        "027",
+        "034"
+      ]
+    },
+    {
+      "id": "database",
+      "name": "Postgres/pgvector/RLS",
+      "status": "LOCAL_COMPONENT",
+      "evidence": "Migrations e testes em container real; auth/aal simulados, sem Supabase hospedado.",
+      "files": [
+        "packages/db/migrations/0001_matter_core.sql",
+        "scripts/test-db.ts"
+      ],
+      "tickets": [
+        "008",
+        "009",
+        "010"
+      ]
+    },
+    {
+      "id": "audit",
+      "name": "Auditoria/hash chain",
+      "status": "LOCAL_COMPONENT",
+      "evidence": "Append SQL + verificador TS testados; sem integração a endpoints ou checkpoint externo.",
+      "files": [
+        "packages/audit/src/index.ts",
+        "packages/db/migrations/0002_audit_and_jobs.sql"
+      ],
+      "tickets": [
+        "011",
+        "037"
+      ]
+    },
+    {
+      "id": "auth",
+      "name": "Login, sessão e MFA real",
+      "status": "NOT_IMPLEMENTED",
+      "evidence": "Sem auth middleware, SDK/sessão ou E2E de identidade.",
+      "files": [
+        "apps/web/app/page.tsx",
+        "apps/web/app/api/health/route.ts"
+      ],
+      "tickets": [
+        "008",
+        "038"
+      ]
+    },
+    {
+      "id": "consent",
+      "name": "Consentimentos e direitos do titular",
+      "status": "NOT_IMPLEMENTED",
+      "evidence": "Consent reference em grant não tem tabela/FK; privacy docs são proposta.",
+      "files": [
+        "packages/db/migrations/0001_matter_core.sql",
+        "docs/PRIVACY.md"
+      ],
+      "tickets": [
+        "031",
+        "036"
+      ]
+    },
+    {
+      "id": "supabase",
+      "name": "Conexão Web → Supabase",
+      "status": "NOT_IMPLEMENTED",
+      "evidence": "Sem código de cliente/loader Supabase ou API de escrita; existência de conta externa não verificada.",
+      "files": [
+        "apps/web/package.json",
+        "apps/web/.env.example"
+      ],
+      "tickets": [
+        "008",
+        "009",
+        "033"
+      ]
+    },
+    {
+      "id": "case-api",
+      "name": "APIs de Case, pessoas e intake persistido",
+      "status": "NOT_IMPLEMENTED",
+      "evidence": "Único endpoint é health; nenhum comando persistente ou data loader autorizado.",
+      "files": [
+        "apps/web/app/api/health/route.ts",
+        "docs/ARCHITECTURE.md"
+      ],
+      "tickets": [
+        "005",
+        "006",
+        "007",
+        "016",
+        "033"
+      ]
+    },
+    {
+      "id": "documents",
+      "name": "Upload/Storage/quarentena",
+      "status": "NOT_IMPLEMENTED",
+      "evidence": "Índice sintético; schema documental não representa upload ou download protegido.",
+      "files": [
+        "apps/web/app/dashboard.tsx",
+        "packages/db/migrations/0001_matter_core.sql"
+      ],
+      "tickets": [
+        "019",
+        "020"
+      ]
+    },
+    {
+      "id": "parsing",
+      "name": "Antivírus/OCR/parser",
+      "status": "NOT_IMPLEMENTED",
+      "evidence": "Há tabela de scan results, não scanner ou pipeline executável.",
+      "files": [
+        "packages/db/migrations/0001_matter_core.sql",
+        "docs/COMPONENT-DECISIONS.md"
+      ],
+      "tickets": [
+        "020",
+        "021",
+        "022",
+        "023"
+      ]
+    },
+    {
+      "id": "worker",
+      "name": "Worker de preparação",
+      "status": "LOCAL_COMPONENT",
+      "evidence": "Handler puro integrado ao domínio; sem daemon, queue ou origem de dados autorizada.",
+      "files": [
+        "apps/worker/src/preparation.ts"
+      ],
+      "tickets": [
+        "033"
+      ]
+    },
+    {
+      "id": "events",
+      "name": "Eventos/outbox/idempotência",
+      "status": "LOCAL_COMPONENT",
+      "evidence": "Somente tabelas; sem atomic command/inbox/lease/retry/DLQ ou processamento.",
+      "files": [
+        "packages/db/migrations/0002_audit_and_jobs.sql"
+      ],
+      "tickets": [
+        "033"
+      ]
+    },
+    {
+      "id": "legal-registry",
+      "name": "Fontes jurídicas/regras",
+      "status": "DESIGN_ONLY",
+      "evidence": "17 referências pendentes; nenhuma versão/texto aprovada ou regra jurídica ativa.",
+      "files": [
+        "legal/sources/registry.v1.json",
+        "legal/rules/BR-FAMILY-v1.yaml"
+      ],
+      "tickets": [
+        "012",
+        "013",
+        "027",
+        "053"
+      ]
+    },
+    {
+      "id": "navigator",
+      "name": "Legal Navigator / RAG / Route Engine jurídico",
+      "status": "NOT_IMPLEMENTED",
+      "evidence": "Sem retrieval, fontes versionadas efetivas, endpoint ou citation UI.",
+      "files": [
+        "docs/LEGAL-BOUNDARIES.md",
+        "docs/AI-GOVERNANCE.md"
+      ],
+      "tickets": [
+        "014",
+        "015",
+        "027"
+      ]
+    },
+    {
+      "id": "finances",
+      "name": "Finanças e custos familiares",
+      "status": "SYNTHETIC_INTEGRATED",
+      "evidence": "Soma em centavos e valores de exemplo; sem schemas SQL/períodos/bens/dívidas.",
+      "files": [
+        "packages/domain/src/index.ts",
+        "apps/web/app/dashboard.tsx"
+      ],
+      "tickets": [
+        "025"
+      ]
+    },
+    {
+      "id": "readiness",
+      "name": "Readiness Report",
+      "status": "SYNTHETIC_INTEGRATED",
+      "evidence": "Pendências/discrepâncias locais; legalReadiness=NOT_ASSESSED.",
+      "files": [
+        "packages/domain/src/index.ts",
+        "apps/web/app/dashboard.tsx"
+      ],
+      "tickets": [
+        "026"
+      ]
+    },
+    {
+      "id": "case-pack",
+      "name": "Case Pack export",
+      "status": "SYNTHETIC_INTEGRATED",
+      "evidence": "JSON local synthetic=true; sem bundle real, consentimento, storage ou audit de export.",
+      "files": [
+        "apps/web/app/dashboard.tsx",
+        "tests/e2e/preparation.spec.ts"
+      ],
+      "tickets": [
+        "029"
+      ]
+    },
+    {
+      "id": "professional",
+      "name": "Professional Portal / grants reais",
+      "status": "NOT_IMPLEMENTED",
+      "evidence": "Grants SQL exercitados separadamente; sem verificação profissional, convite/MFA ou portal.",
+      "files": [
+        "packages/db/migrations/0001_matter_core.sql",
+        "team/dev/SPRINT-01.md"
+      ],
+      "tickets": [
+        "028",
+        "031",
+        "038",
+        "048"
+      ]
+    },
+    {
+      "id": "bridge",
+      "name": "Communication Bridge",
+      "status": "GATED_NOT_IMPLEMENTED",
+      "evidence": "Sem endpoints/tabelas de mensagem; sem consent/safety/identity reais.",
+      "files": [
+        "packages/policy-engine/src/index.ts",
+        "docs/EXECUTION-PLAN.md"
+      ],
+      "tickets": [
+        "032",
+        "035",
+        "043"
+      ]
+    },
+    {
+      "id": "negotiation",
+      "name": "Propostas/contrapropostas/Consensus Map",
+      "status": "GATED_NOT_IMPLEMENTED",
+      "evidence": "Termos e versões somente descritos; nenhum motor de negociação ou aceitação.",
+      "files": [
+        "docs/MVP-BACKLOG.md"
+      ],
+      "tickets": [
+        "044",
+        "045",
+        "046"
+      ]
+    },
+    {
+      "id": "coparent",
+      "name": "Coparentalidade/calendário/reembolso",
+      "status": "NOT_IMPLEMENTED",
+      "evidence": "Fase posterior ao acordo; sem tabelas/calendário/recorrência.",
+      "files": [
+        "docs/MVP-BACKLOG.md"
+      ],
+      "tickets": [
+        "047"
+      ]
+    },
+    {
+      "id": "agents",
+      "name": "Agentes do produto / AI Gateway",
+      "status": "NOT_IMPLEMENTED",
+      "evidence": "Matriz de capacidades descrita; nenhuma instanciação, chamada LLM ou Context Builder.",
+      "files": [
+        "docs/AI-GOVERNANCE.md"
+      ],
+      "tickets": [
+        "017",
+        "030",
+        "034",
+        "039"
+      ]
+    },
+    {
+      "id": "assistance",
+      "name": "Assistência clientes/leads/parceiros",
+      "status": "DESIGN_ONLY",
+      "evidence": "Prompt/knowledge/tools em draft e disabled; 18 cenários propostos, não executados.",
+      "files": [
+        "ai/customer-assistance/policies/capabilities.v1.json",
+        "ai/customer-assistance/evals/scenarios.v1.json"
+      ],
+      "tickets": [
+        "031",
+        "034",
+        "039"
+      ]
+    },
+    {
+      "id": "hermes",
+      "name": "Hermes Agent",
+      "status": "DESIGN_ONLY",
+      "evidence": "Avaliação de POC; não instalado, integrado ou avaliado em execução.",
+      "files": [
+        "ai/customer-assistance/integrations/HERMES-ASSESSMENT.md"
+      ],
+      "tickets": [
+        "034",
+        "039",
+        "041"
+      ]
+    },
+    {
+      "id": "marketing",
+      "name": "Campanhas e perfis sociais",
+      "status": "DESIGN_ONLY",
+      "evidence": "Briefs/bios/medição em draft; atividade externa e contas não verificadas.",
+      "files": [
+        "marketing/README.md",
+        "marketing/social-profiles/README.md"
+      ],
+      "tickets": [
+        "052"
+      ]
+    },
+    {
+      "id": "channels",
+      "name": "WhatsApp/email/e-sign/cartórios",
+      "status": "NOT_IMPLEMENTED",
+      "evidence": "Contratos futuros; nenhum SDK/connector/send/sign endpoint.",
+      "files": [
+        "docs/COMPONENT-DECISIONS.md"
+      ],
+      "tickets": [
+        "049",
+        "050",
+        "051"
+      ]
+    },
+    {
+      "id": "hosting",
+      "name": "Vercel/Cloudflare/VPS/staging/prod",
+      "status": "UNVERIFIED",
+      "evidence": "Stack recomendada, sem prova de deploy/domínio/worker externo nesta sessão.",
+      "files": [
+        "docs/STACK-AND-NEXT-STEPS.md"
+      ],
+      "tickets": [
+        "040"
+      ]
+    },
+    {
+      "id": "operations",
+      "name": "Retenção/backups/restore/observabilidade",
+      "status": "DESIGN_ONLY",
+      "evidence": "Runbooks/riscos propostos; nenhum drill ou owner nominal verificado.",
+      "files": [
+        "docs/RUNBOOK.md",
+        "docs/INCIDENT-RESPONSE.md"
+      ],
+      "tickets": [
+        "036",
+        "037",
+        "039",
+        "040"
+      ]
+    },
+    {
+      "id": "business",
+      "name": "Pilotos, preços e eficácia B2C/B2B",
+      "status": "DESIGN_ONLY",
+      "evidence": "Hipóteses; nenhum preço/revenue/resultado de piloto verificado.",
+      "files": [
+        "docs/EXECUTION-PLAN.md",
+        "ai/customer-assistance/knowledge/SERVICE-CATALOG.json"
+      ],
+      "tickets": [
+        "052"
+      ]
+    }
+  ]
+}
